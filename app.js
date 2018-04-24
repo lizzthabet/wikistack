@@ -14,12 +14,12 @@ app.use(morgan('tiny'));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(function (req, res) {
-  res.setHeader('Content-Type', 'text/plain')
-  res.write('you posted:\n')
-  res.end(JSON.stringify(req.body, null, 2))
-});
 
 app.listen(3000, () => console.log('server is running'));
 
 app.get('/', router);
+app.use(function (req, res) {
+	res.setHeader('Content-Type', 'text/plain')
+	res.write('you posted:\n')
+	res.end(JSON.stringify(req.body, null, 2))
+});
