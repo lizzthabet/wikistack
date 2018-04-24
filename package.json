@@ -1,19 +1,29 @@
 {
-  "name": "wikistack",
-  "version": "1.0.0",
-  "description": "A wikipedia-like site",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lizzthabet/wikistack.git"
-  },
-  "author": "lizz thabet",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/lizzthabet/wikistack/issues"
-  },
-  "homepage": "https://github.com/lizzthabet/wikistack#readme"
+	"name": "wikistack",
+	"version": "1.0.0",
+	"description": "A wikipedia-like site",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+	"start": "nodemon -e html,js,css app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lizzthabet/wikistack.git"
+	},
+	"author": "lizz thabet",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/lizzthabet/wikistack/issues"
+	},
+	"homepage": "https://github.com/lizzthabet/wikistack#readme",
+	"dependencies": {
+		"body-parser": "^1.18.2",
+		"express": "^4.16.3",
+		"morgan": "^1.9.0",
+		"nodemon": "^1.17.3",
+		"nunjucks": "^3.1.2",
+		"pg": "^7.4.1",
+		"sequelize": "^4.37.6"
+	}
 }
