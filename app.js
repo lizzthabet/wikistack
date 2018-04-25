@@ -23,6 +23,9 @@ models.db.sync()
 	})
 	.catch(console.error.bind(console));
 
+// An error-handling middleware, because it has FOUR params
+app.use((err, req, res, next) => console.error(err))
+
 app.use(router);
 app.use(function (req, res) {
 	res.setHeader('Content-Type', 'text/plain')
