@@ -16,13 +16,9 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-models.User.sync()
+models.db.sync()
 	.then(() => {
-		console.log('User table created!');
-		return models.Page.sync();
-	})
-	.then(() => {
-		console.log('Page table created!');
+		console.log('All tables created!');
 		app.listen(3000, () => console.log('server is running'));
 	})
 	.catch(console.error.bind(console));
