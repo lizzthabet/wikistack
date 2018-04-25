@@ -23,7 +23,7 @@ models.db.sync()
 	})
 	.catch(console.error.bind(console));
 
-app.get('/', router);
+app.use(router);
 app.use(function (req, res) {
 	res.setHeader('Content-Type', 'text/plain')
 	res.write('you posted:\n')
