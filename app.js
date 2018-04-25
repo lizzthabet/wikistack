@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 models.db.sync()
 	.then(() => {
 		console.log('All tables created!');
-		app.listen(3000, () => console.log('server is running'));
+		app.listen(3000, () => console.log('Server is running...finally!'));
 	})
 	.catch(console.error.bind(console));
 

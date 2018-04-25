@@ -24,6 +24,12 @@ const Page = db.define('page', {
 	date: {
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
+	},
+}, {
+	getterMethods: {
+		url() {
+			return `/wiki/${this.urlTitle}`;
+		}
 	}
 })
 
@@ -42,7 +48,7 @@ const User = db.define('user', {
 	}
 })
 
-module.export = {
+module.exports = {
 	db,
 	Page,
 	User
