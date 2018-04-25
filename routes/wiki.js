@@ -15,13 +15,16 @@ wikiRouter.get('/add', (req, res) => {
 wikiRouter.post('/', (req, res, next) => {
   //   res.json(req.body)
   //   console.log(req.body)
-  const page = Page.build({
-    title: req.body.title,
-    content: req.body['page-content'],
-    status: req.body['page-status']
-    //   date: ???
-  })
-  page.save().then(res.redirect('/'))
+  const newPage = Page.build(req.body)
+
+  newPage
+    .save()
+    .then(function() {
+      console.log('Page was added to db successfully!')
+    })
+    .catch(function(err) {
+      next(err)
+    })
 })
 
 module.exports = wikiRouter

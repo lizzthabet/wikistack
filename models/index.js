@@ -34,6 +34,7 @@ const Page = db.define(
 )
 Page.beforeValidate(page => {
   page.urlTitle = generateUrlTitle(page.title)
+  console.log(page)
 })
 const User = db.define('user', {
   name: {
@@ -42,6 +43,8 @@ const User = db.define('user', {
   },
   email: {
     type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
     validate: {
       isEmail: true
     }
