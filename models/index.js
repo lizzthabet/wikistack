@@ -4,21 +4,15 @@ const db = new Sequelize('postgres://localhost:5432/wikistack', {logging: false}
 const Page = db.define('page', {
 	title: {
 		type: Sequelize.STRING,
-		validate: {
-			allowNull: false
-		}
+		allowNull: false
 	},
 	urlTitle: {
 		type: Sequelize.STRING,
-		validate: {
-			allowNull: false
-		}
+		allowNull: false
 	},
 	content: {
 		type: Sequelize.TEXT,
-		validate: {
-			allowNull: false
-		}
+		allowNull: false
 	},
 	status: Sequelize.ENUM('open', 'closed'),
 	date: {
@@ -36,9 +30,7 @@ const Page = db.define('page', {
 const User = db.define('user', {
 	name: {
 		type: Sequelize.STRING,
-		validate: {
-			allowNull: false
-		}
+		allowNull: false
 	},
 	email: {
 		type: Sequelize.STRING,
