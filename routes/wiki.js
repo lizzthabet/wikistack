@@ -12,6 +12,16 @@ wikiRouter.get('/add', (req, res) => {
 	res.render('addpage')
 })
 
+wikiRouter.get('/:urlTitle', (req, res, next) => {
+	Page.findOne({
+		where: {
+			urlTitle: req.params.urlTitle
+		}
+	}).then(page => {
+		res.render('wikipage', page.dataValues)
+	}).catch(next)
+})
+
 wikiRouter.post('/', (req, res, next) => {
 	const newPage = Page.build({
 		title: req.body.title,

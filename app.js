@@ -16,7 +16,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-models.db.sync({force: true})
+models.db.sync()
 	.then(() => {
 		console.log('All tables created!');
 		app.listen(3000, () => console.log('Server is running...finally!'));
