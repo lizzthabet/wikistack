@@ -18,7 +18,7 @@ wikiRouter.get('/:urlTitle', (req, res, next) => {
 			urlTitle: req.params.urlTitle
 		}
 	}).then(page => {
-		res.render('wikipage', page.dataValues)
+		res.render('wikipage', {page: page.dataValues})
 	}).catch(next)
 })
 
@@ -29,7 +29,7 @@ wikiRouter.post('/', (req, res, next) => {
 		status: req.body['page-status']
 	})
 	newPage.save().then(() => {
-		res.redirect('/')
+		res.redirect(newPage.route)
 	}).catch(next)
 })
 
