@@ -23,10 +23,19 @@ const Page = db.define(
 			type: Sequelize.DATE,
 			defaultValue: Sequelize.NOW
 		},
+		tags: {
+			type: Sequelize.ARRAY(Sequelize.TEXT)
+		},
+		taglist: {
+			type: Sequelize.VIRTUAL,
+			get () {
+				return this.getDataValue('tags').join(', ')
+			}
+		},
 		route: {
 			type: Sequelize.VIRTUAL,
 			get () {
-				return `/wiki/${this.urlTitle}`
+				return `/wiki/${this.getDataValue('urlTitle')}`
 			}
 		}
 	}
@@ -54,6 +63,9 @@ const User = db.define('user', {
 		}
 	}
 })
+
+Page.belongsTo(User, {as: 'author'})
+User.hasMany(Page, {foreignKey: 'authorId'})
 
 module.exports = {
 	db,
