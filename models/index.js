@@ -22,11 +22,10 @@ const Page = db.define(
 		date: {
 			type: Sequelize.DATE,
 			defaultValue: Sequelize.NOW
-		}
-	},
-	{
-		getterMethods: {
-			route() {
+		},
+		route: {
+			type: Sequelize.VIRTUAL,
+			get () {
 				return `/wiki/${this.urlTitle}`
 			}
 		}
@@ -36,6 +35,12 @@ const Page = db.define(
 Page.beforeValidate(page => {
 	page.urlTitle = generateUrlTitle(page.title)
 })
+
+// Helper function to generate page urlTitle
+function generateUrlTitle(title) {
+	if (title) return title.replace(/\s+/g, '_').replace(/\W/g, '').toLowerCase()
+	else return Math.random().toString(36).substring(2, 7)
+}
 
 const User = db.define('user', {
 	name: {
@@ -54,9 +59,4 @@ module.exports = {
 	db,
 	Page,
 	User
-}
-
-function generateUrlTitle(title) {
-	if (title) return title.replace(/\s+/g, '_').replace(/\W/g, '')
-	else return Math.random().toString(36).substring(2, 7)
 }
