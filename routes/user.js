@@ -5,6 +5,10 @@ const Page = models.Page
 const User = models.User
 
 userRouter.get('/', (req, res) => {
+	User.findAll().then(allUsers => {
+		console.log(allUsers)
+		res.render('users', { users: allUsers })
+	})
 	// get all users, no database changes
 	// skipping this for time
 })
@@ -14,7 +18,6 @@ userRouter.get('/:id', (req, res, next) => {
 	User.findById(id, {
 		include: [Page]
 	}).then(userInfo => {
-		//if (userInfo === null) res.sendStatus(404)
 		res.render('userpage', {user: userInfo})
 	}).catch(next)
 })
